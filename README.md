@@ -1,4 +1,7 @@
 # tm-result
+
+[![codecov](https://codecov.io/gh/RomanBurunkov/tm-result/branch/main/graph/badge.svg?token=XQR8J8HAMW)](https://codecov.io/gh/RomanBurunkov/tm-result)
+
 Return and process results of functions or api calls as a JS object.
 
 The common result object format is 
