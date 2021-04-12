@@ -1,0 +1,57 @@
+{
+  "name": "tm-result",
+  "version": "0.0.1",
+  "description": "The common result object library",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --ignore-path .gitignore index.js",
+    "lint:fix": "eslint --fix --ignore-path .gitignore index.js",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RomanBurunkov/tm-result.git"
+  },
+  "keywords": [
+    "result"
+  ],
+  "author": "Roman <romon2002@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RomanBurunkov/tm-result/issues"
+  },
+  "homepage": "https://github.com/RomanBurunkov/tm-result#readme",
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "^26.6.3"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "jest": true
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "legacyDecorators": true
+      }
+    },
+    "extends": [
+      "airbnb-base"
+    ],
+    "rules": {
+      "import/prefer-default-export": "off"
+    }
+  },
+  "jest": {
+    "verbose": true,
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "testRegex": ".spec.js$",
+    "coverageDirectory": "./coverage"
+  }
+}
