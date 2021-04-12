@@ -10,3 +10,19 @@ describe('All functions should be defined.', () => {
     });
   });
 });
+
+describe('Test isOk function', () => {
+  test('Should return false if no applicable result passed', () => {
+    ['', null, {}, [], undefined].forEach((res) => {
+      expect(result.isOk(res)).toBe(false);
+    })
+  });
+});
+
+describe('Test isNOk function', () => {
+  test('Should return true if no applicable result passed', () => {
+    ['', null, {}, [], undefined].forEach((res) => {
+      expect(result.isNOk(res)).toBe(true);
+    })
+  });
+});
