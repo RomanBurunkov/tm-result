@@ -8,12 +8,13 @@ Return and process results of functions or api calls as a JS object.
 The common result object format is 
 
 ```
-{ status, result, data }
+{ status, result, [data], [messages] }
 ```
 
  - `status` String with possible two values 'ok' or 'nok'(means not ok).
  - `result` String which should be equal to 'ok' if `status` is 'ok', or should contain details about why result is not ok.
  - `data` could be any value and contains a result data.
+ - `messages` Array of messages for 'nok' results(can be passed as a rest arguments to the genNOk method).
 
 
 ## Installation

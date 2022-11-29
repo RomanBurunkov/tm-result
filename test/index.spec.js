@@ -1,5 +1,5 @@
-const result = require('../index');
 const { isObject } = require('tm-is');
+const result = require('../index');
 
 const badResults = () => ['', null, {}, [], undefined];
 const okResult = () => ({ status: 'ok', result: 'ok', data: [] });
@@ -19,7 +19,7 @@ describe('Test isOk function', () => {
   test('Should return false if no applicable result passed', () => {
     badResults().forEach((res) => {
       expect(result.isOk(res)).toBe(false);
-    })
+    });
   });
 
   test('Should return true if OK result passed', () => {
@@ -35,7 +35,7 @@ describe('Test isNOk function', () => {
   test('Should return true if no applicable result passed', () => {
     badResults().forEach((res) => {
       expect(result.isNOk(res)).toBe(true);
-    })
+    });
   });
 
   test('Should return true if not OK result passed', () => {
@@ -100,5 +100,21 @@ describe('Test genNOk function', () => {
     const msg = 'Error!';
     const res = result.genNOk(new Error(msg));
     expect(res.result).toBe(msg);
+  });
+
+  test('Returned object should be a not OK result object with messages array field of 1 if 1 extra argument has been passed.', () => {
+    const res = result.genNOk('Error!', 'This is 1st message');
+    expect(result.isNOk(res)).toBe(true);
+    expect(res.messages).toBeDefined();
+    expect(Array.isArray(res.messages)).toBe(true);
+    expect(res.messages.length === 1).toBe(true);
+  });
+
+  test('Returned object should be a not OK result object with messages array field of 2 if 2 extra argument has been passed.', () => {
+    const res = result.genNOk('Error!', 'This is 1st message', 'This is 2nd message');
+    expect(result.isNOk(res)).toBe(true);
+    expect(res.messages).toBeDefined();
+    expect(Array.isArray(res.messages)).toBe(true);
+    expect(res.messages.length === 2).toBe(true);
   });
 });

@@ -1,6 +1,6 @@
 {
   "name": "tm-result",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "The common result object library",
   "main": "index.js",
   "scripts": {
@@ -55,6 +55,6 @@
     "coverageDirectory": "./coverage"
   },
   "dependencies": {
-    "tm-is": "^0.0.2"
+    "tm-is": "^0.2.0"
   }
 }
