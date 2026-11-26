@@ -22,22 +22,13 @@
     "url": "https://github.com/RomanBurunkov/tm-result/issues"
   },
   "homepage": "https://github.com/RomanBurunkov/tm-result#readme",
+  "dependencies": {
+    "tm-is": "^0.2.0"
+  },
   "devDependencies": {
     "eslint": "^7.24.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "jest": "^26.6.3"
-  },
-  "jest": {
-    "verbose": true,
-    "moduleFileExtensions": [
-      "js",
-      "json"
-    ],
-    "testRegex": ".spec.js$",
-    "coverageDirectory": "./coverage"
-  },
-  "dependencies": {
-    "tm-is": "^0.2.0"
   }
 }
