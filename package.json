@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "The common result object library",
   "main": "index.js",
+  "files": ["index.js"],
   "scripts": {
     "lint": "eslint --ignore-path .gitignore index.js",
     "lint:fix": "eslint --fix --ignore-path .gitignore index.js",
