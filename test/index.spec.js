@@ -27,7 +27,8 @@ describe('Test isResponseResult function', () => {
       okResult(),
       nokResult(),
       { status: 'ok', result: 'Some result' },
-      { status: 'nok', result: 'ok', messages: null },
+      { status: 'nok', result: 'ok', messages: [] },
+      { status: 'nok', result: 'ok', messages: ['msg'] },
     ].forEach((res) => {
       expect(result.isResponseResult(res)).toBe(true);
     });
@@ -51,6 +52,15 @@ describe('Test isResponseResult function', () => {
       { status: 'ok', result: null },
       { status: 'ok', result: 1 },
       { status: 'ok', result: {} },
+    ].forEach((res) => {
+      expect(result.isResponseResult(res)).toBe(false);
+    });
+  });
+
+  test('Should return false if messages are invalid', () => {
+    [
+      { status: 'ok', result: 'error', messages: null },
+      { status: 'ok', result: 'error', messages: 1 },
     ].forEach((res) => {
       expect(result.isResponseResult(res)).toBe(false);
     });
