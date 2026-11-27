@@ -25,5 +25,6 @@ The common result object format is
 
  - `genOk` Generates 'OK' result object.
  - `genNOk` Generates 'not OK' result object.
+ - `isResponseResult` (since 0.2.0) Checks whether the argument is a valid result object with a `status` and a non-empty string `result`.
  - `isOk` Checks if passed arg is an 'OK' result object.
  - `isNOk` Checks if passed arg is a 'not OK' result object.

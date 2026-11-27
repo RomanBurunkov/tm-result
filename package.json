@@ -1,9 +1,16 @@
 {
   "name": "tm-result",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The common result object library",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "dist/types"
+  ],
+  "types": "dist/types",
   "scripts": {
+    "prepack": "npm run build:types",
+    "build:types": "tsc",
     "lint": "eslint --ignore-path .gitignore index.js",
     "lint:fix": "eslint --fix --ignore-path .gitignore index.js",
     "test": "jest",
@@ -22,39 +29,14 @@
     "url": "https://github.com/RomanBurunkov/tm-result/issues"
   },
   "homepage": "https://github.com/RomanBurunkov/tm-result#readme",
-  "devDependencies": {
-    "eslint": "^7.24.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "jest": "^26.6.3"
-  },
-  "eslintConfig": {
-    "env": {
-      "node": true,
-      "jest": true
-    },
-    "parserOptions": {
-      "ecmaFeatures": {
-        "legacyDecorators": true
-      }
-    },
-    "extends": [
-      "airbnb-base"
-    ],
-    "rules": {
-      "import/prefer-default-export": "off"
-    }
-  },
-  "jest": {
-    "verbose": true,
-    "moduleFileExtensions": [
-      "js",
-      "json"
-    ],
-    "testRegex": ".spec.js$",
-    "coverageDirectory": "./coverage"
-  },
   "dependencies": {
-    "tm-is": "^0.2.0"
+    "tm-is": "^0.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.32.0",
+    "jest": "^29.7.0",
+    "typescript": "^7.0.2"
   }
 }

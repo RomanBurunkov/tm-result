@@ -6,11 +6,63 @@ const okResult = () => ({ status: 'ok', result: 'ok', data: [] });
 const nokResult = () => ({ status: 'nok', result: 'Some error!' });
 
 describe('All functions should be defined.', () => {
-  const funcs = ['isOk', 'isNOk', 'genOk', 'genNOk'];
+  const funcs = ['isResponseResult', 'isOk', 'isNOk', 'genOk', 'genNOk'];
   funcs.forEach((f) => {
     test(`Function ${f} defined`, () => {
       expect(result[f]).toBeDefined();
       expect(result[f]).toBeInstanceOf(Function);
+    });
+  });
+});
+
+describe('Test isResponseResult function', () => {
+  test('Should return false if no applicable result passed', () => {
+    badResults().forEach((res) => {
+      expect(result.isResponseResult(res)).toBe(false);
+    });
+  });
+
+  test('Should return true for response results with either status', () => {
+    [
+      okResult(),
+      nokResult(),
+      { status: 'ok', result: 'Some result' },
+      { status: 'nok', result: 'ok', messages: [] },
+      { status: 'nok', result: 'ok', messages: ['msg'] },
+    ].forEach((res) => {
+      expect(result.isResponseResult(res)).toBe(true);
+    });
+  });
+
+  test('Should return false if status is missing or invalid', () => {
+    [
+      { result: 'ok' },
+      { status: '', result: 'ok' },
+      { status: 'error', result: 'ok' },
+      { status: 1, result: 'ok' },
+    ].forEach((res) => {
+      expect(result.isResponseResult(res)).toBe(false);
+    });
+  });
+
+  test('Should return false if result is missing, empty, or not a string', () => {
+    [
+      { status: 'ok' },
+      { status: 'ok', result: '' },
+      { status: 'ok', result: null },
+      { status: 'ok', result: 1 },
+      { status: 'ok', result: {} },
+    ].forEach((res) => {
+      expect(result.isResponseResult(res)).toBe(false);
+    });
+  });
+
+  test('Should return false if messages are invalid', () => {
+    [
+      { status: 'ok', result: 'error', messages: null },
+      { status: 'ok', result: 'error', messages: 1 },
+    ].forEach((res) => {
+      expect(result.isResponseResult(res)).toBe(false);
     });
   });
 });
