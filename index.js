@@ -23,7 +23,7 @@ function isErrorLike(err) {
 /**
  * Checks if object is a response result
  * @param {*} responseResult
- * @returns {r is ResponseResult}
+ * @returns {responseResult is ResponseResult}
  */
 function isResponseResult(responseResult) {
   if (!isObj(responseResult)) {
@@ -36,6 +36,16 @@ function isResponseResult(responseResult) {
 
   if (!responseResult.result || typeof responseResult.result !== 'string') {
     return false;
+  }
+
+  if (responseResult.messages !== undefined) {
+    if (!Array.isArray(responseResult.messages)) {
+      return false;
+    }
+
+    if (responseResult.messages.some((m) => typeof m !== 'string')) {
+      return false;
+    }
   }
 
   return true;
