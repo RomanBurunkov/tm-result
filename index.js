@@ -1,7 +1,7 @@
 const { isObj, isUndef, isNotEmptyArr } = require('tm-is');
 
 /**
- * Response result object
+ * Result object to represent response status
  * @typedef {Object} ResponseResult
  * @property {'ok'|'nok'} status
  * @property {string} result
