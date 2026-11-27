@@ -21,7 +21,7 @@ function isErrorLike(err) {
 }
 
 /**
- * Checks if object is a response result
+ * Checks if argument is a response result object
  * @param {*} responseResult
  * @returns {responseResult is ResponseResult}
  */
