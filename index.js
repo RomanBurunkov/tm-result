@@ -12,7 +12,7 @@ const { isObj, isUndef, isNotEmptyArr } = require('tm-is');
 const STATUSES = new Set(['ok', 'nok']);
 
 /**
- * Check if error-like
+ * Checks if err is error-like object
  * @param {*} err
  * @returns {err is {message: string, [key: string]: any}}
  */
@@ -21,52 +21,52 @@ function isErrorLike(err) {
 }
 
 /**
- * Check if object is a response result
- * @param {*} r
+ * Checks if object is a response result
+ * @param {*} responseResult
  * @returns {r is ResponseResult}
  */
-function isResponseResult(r) {
-  if (!isObj(r)) {
+function isResponseResult(responseResult) {
+  if (!isObj(responseResult)) {
     return false;
   }
 
-  if (!r.status || !STATUSES.has(r.status)) {
+  if (!responseResult.status || !STATUSES.has(responseResult.status)) {
     return false;
   }
 
-  if (!r.result || typeof r.result !== 'string') {
+  if (!responseResult.result || typeof responseResult.result !== 'string') {
     return false;
   }
 
-  return isObj(r) && 'status' in r && 'result' in r;
+  return true;
 }
 
 /**
- * Check if response is ok
- * @param {*} r
+ * Checks if argument is ok, response result object
+ * @param {*} responseResult
  * @returns {boolean}
  */
-function isOk(r) {
-  if (!isResponseResult(r)) {
+function isOk(responseResult) {
+  if (!isResponseResult(responseResult)) {
     return false;
   }
 
-  return r.status === 'ok' && r.result === 'ok';
+  return responseResult.status === 'ok' && responseResult.result === 'ok';
 }
 
 /**
- * Check if response is not ok
- * @param {*} r
+ * Checks if argument is not ok(nok) response result object
+ * @param {*} responseResult
  * @returns {boolean}
  */
-function isNOk(r) {
-  return !isOk(r);
+function isNOk(responseResult) {
+  return !isOk(responseResult);
 }
 
 /**
- * Generate ok response
- * @param {*} [data] optional data to include
- * @returns {ResponseResult}
+ * Generates ok response result object
+ * @param {*} [data] optional data to attach to response result object
+ * @returns {ResponseResult} Ok response result object
  */
 function genOk(data) {
   if (isUndef(data)) {
@@ -77,13 +77,13 @@ function genOk(data) {
 }
 
 /**
- * Generate nok response
- * @param {*} r
- * @param {...string} messages
- * @returns {ResponseResult}
+ * Generates not ok(nok) response result object
+ * @param {Error|string} reason Reason for nok response(error instance or string)
+ * @param {...string} [messages] Additional messages to include in response
+ * @returns {ResponseResult} Nok response result object
  */
-function genNOk(r, ...messages) {
-  let result = isErrorLike(r) ? r.message : r;
+function genNOk(reason, ...messages) {
+  let result = isErrorLike(reason) ? reason.message : reason;
   if (!result) {
     result = 'error';
   }
