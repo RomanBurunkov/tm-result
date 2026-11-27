@@ -3,8 +3,14 @@
   "version": "0.2.0",
   "description": "The common result object library",
   "main": "index.js",
-  "files": ["index.js"],
+  "files": [
+    "index.js",
+    "dist/types"
+  ],
+  "types": "dist/types",
   "scripts": {
+    "prepack": "npm run build:types",
+    "build:types": "tsc",
     "lint": "eslint --ignore-path .gitignore index.js",
     "lint:fix": "eslint --fix --ignore-path .gitignore index.js",
     "test": "jest",
